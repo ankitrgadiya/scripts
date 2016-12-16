@@ -1,0 +1,23 @@
+#! /bin/bash
+
+CURRENT="current"
+NEXT="next"
+UPDATE="update"
+
+if [ $# = 0 ]
+    then
+        cat ~/Lists/tasks.md
+fi
+if [ "$1" == "$CURRENT" ]
+    then
+        tail -n 6 ~/Lists/tasks.md | head -n 2
+fi
+if [ "$1" == "$NEXT" ]
+    then
+        tail -n 3 ~/Lists/tasks.md
+fi
+if [ "$1" == "$UPDATE" ]
+    then
+        nano ~/Lists/tasks.md
+fi
+echo "Happy Coding :-)"
