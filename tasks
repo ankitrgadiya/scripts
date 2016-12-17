@@ -3,21 +3,34 @@
 CURRENT="current"
 NEXT="next"
 UPDATE="update"
+HELP="--help"
+SHOW="show"
 
-if [ $# = 0 ]
+if [ "$1" = "SHOW" ]
     then
-        cat ~/Lists/tasks.md
+        cat ~/Documents/tasks.md
+fi
+if [ "$1" == "$HELP" ]
+    then
+        echo "arguments:
+        				 show : shows the listed task (including previous, current, next)
+        				 current : shows current task
+        				 next    : shows next task
+        				 update  : edit the task details"
 fi
 if [ "$1" == "$CURRENT" ]
     then
-        tail -n 6 ~/Lists/tasks.md | head -n 2
+        tail -n 6 ~/Documents/tasks.md | head -n 2
 fi
 if [ "$1" == "$NEXT" ]
     then
-        tail -n 3 ~/Lists/tasks.md
+        tail -n 3 ~/Documents/tasks.md
 fi
 if [ "$1" == "$UPDATE" ]
     then
-        nano ~/Lists/tasks.md
+        nano ~/Documents/tasks.md
 fi
-echo "Happy Coding :-)"
+if [ $# = 0 ]
+	then
+echo "You must provide and argument. type tasks --help for help"
+fi
