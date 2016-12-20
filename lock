@@ -1,0 +1,6 @@
+#! /bin/bash
+scrot /tmp/lockbg.png
+convert /tmp/lockbg.png -blur 0x5 $f /tmp/lockbg.png
+convert -gravity center -composite /tmp/lockbg.png ~/Pictures/Logo/Logo-small.png /tmp/lockfinal.png
+i3lock -u -i /tmp/lockfinal.png
+rm /tmp/lockfinal.png /tmp/lockbg.png
