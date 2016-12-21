@@ -1,6 +1,13 @@
 #! /bin/bash
-scrot /tmp/lockbg.png
-convert /tmp/lockbg.png -blur 0x5 $f /tmp/lockbg.png
-convert -gravity center -composite /tmp/lockbg.png ~/Pictures/Logo/Logo-small.png /tmp/lockfinal.png
-i3lock -u -i /tmp/lockfinal.png
-rm /tmp/lockfinal.png /tmp/lockbg.png
+
+# Location Variables
+scr="/tmp/lockbg.png"
+logo="$HOME/Pictures/Logo/Logo-small.png"
+final="/tmp/lockfinal.png"
+
+# Script
+scrot "$scr"
+convert "$scr" -blur 0x5 $f "$scr"
+convert -gravity center -composite "$scr" "$logo" "$final"
+i3lock -u -i "$final"
+rm "$final" "$scr"
