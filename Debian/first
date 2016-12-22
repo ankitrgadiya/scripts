@@ -1,0 +1,14 @@
+#! /bin/bash
+
+# As root user
+echo "deb http://security.debian.org/ jessie/updates main non-free contrib" > /etc/apt/sources.list
+echo "deb-src http://security.debian.org/ jessie/updates main non-free contrib" >> /etc/apt/sources.list
+echo "deb http://ftp.debian.org/debian/ jessie-updates main non-free contrib" >> /etc/apt/sources.list
+echo "deb-src http://ftp.debian.org/debian/ jessie-updates main non-free contrib" >> /etc/apt/sources.list
+echo "deb http://httpredir.debian.org/debian jessie main non-free contrib" >> /etc/apt/sources.list
+echo "deb-src http://httpredir.debian.org/debian jessie main non-free contrib" >> /etc/apt/sources.list
+apt-get clean
+apt-get update
+apt-get install sudo
+adduser elliot sudo
+echo "Now login as elliot and run second script"
