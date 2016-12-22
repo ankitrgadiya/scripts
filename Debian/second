@@ -1,0 +1,6 @@
+#! /bin/bash
+
+# Run this as normal user
+dhclient eth0
+apt-get install network-manager wireless-tools firmware-atheros
+reboot
