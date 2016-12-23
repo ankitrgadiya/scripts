@@ -1,6 +1,24 @@
 #! /bin/bash
-
-# Run this as normal user
 dhclient eth0
 apt-get install network-manager wireless-tools firmware-atheros
+sed -i -e 's/false/true/g' /etc/NetworkManager/NetworkManager.conf
+service network-manager restart
+apt-get install i3 gnome-disk-utility gedit vim tmux moc vlc firefox-esr lxappearance xfce4-terminal gnome-themes-standard mc openssh-server lightdm git curl feh scrot imagemagik gstreamer1.0-fluendo p7zip
+update-rc.d -f ssh remove
+update-rc.d -f ssh defaults
+update-rc.d -f ssh enable 2 3 4 5
+service ssh restart
+git clone https://github.com/ankitrgadiya/dotfiles
+cp -r dotfiles/.i3 ~/.
+cp -r dotfiles/.mutt ~/.
+cp dotfiles/.muttrc ~/
+vim ~/.mutt/account.com.gmail.ankit4922
+vim ~/.mutt/account.com.pawnmail.me
+rm -rf dotfiles
+wget https://github.com/supermarin/YosemiteSanFranciscoFont/archive/master.unzip master.zip
+mv YosemiteSanFranciscoFont-master/*.ttf ~/.fonts
+mkdir ~/.fonts
+rm -rf ~/YosemiteSanFranciscoFont-master
+rm master.zip
+unzip master.zip
 reboot
