@@ -1,0 +1,69 @@
+#! /bin/bash
+
+# Written by Ankit R. Gadiya
+
+# Variables
+dir="/path/to/repos/locally"
+url="https://github.com/username" # Replace username with your's
+
+# Array for repos
+declare -a repos=(cs50)
+
+# First Command Line argument
+clone="clone"
+pull="pull"
+fetch="fetch"
+help="--help"
+
+# More variables
+arg=$1
+pwd=`pwd`
+
+# Script
+if [ $# = 0 ]
+    then
+        echo "Try again with command line arguments"
+        echo "For help use --help"
+fi
+if [ $# = 1 ]
+    then
+        cd $dir
+        if [ "$1" == "$clone" ]
+            then
+                for i in "${repos[@]}"
+                do
+	                git $arg $url/$i
+                done
+        elif [ "$1" == "$pull" ]
+            then
+                for i in "${repos[@]}"
+                do
+                    cd $i
+                    git $arg
+                    cd ..
+                done
+        elif [ "$1" == "$fetch" ]
+            then    
+                for i in "${repos[@]}"
+                do
+                    cd $i
+                    git fetch --all
+                    cd ..
+                done
+        elif [ "$1" == "$help" ]
+            then
+                echo "╦ ╦┌─┐┬  ┌─┐"
+                echo "╠═╣├┤ │  ├─┘"
+                echo "╩ ╩└─┘┴─┘┴  "
+                echo "A small script to perform git commands on a whole bunch of repos together"
+                echo "Usage: githelper <options>"
+                echo "Currently supported functions:"
+                echo "* clone"
+                echo "* pull"
+                echo "* fetch"
+        else
+            echo "Not supported"
+        fi
+fi
+
+cd $pwd
