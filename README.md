@@ -13,3 +13,6 @@ Dependencies:
 - ImageMagic
 - i3lock
 - scrot
+
+### githelper
+A small script to perform git commands on a whole bunch of repos together.
