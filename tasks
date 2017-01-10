@@ -1,11 +1,16 @@
 #! /bin/bash
 
+# Written by Ankit R Gadiya
+# Written during Google Code-in 2016
+
+# Command Line Arguments
 CURRENT="current"
 NEXT="next"
 UPDATE="update"
 HELP="help"
 SHOW="show"
 
+# Script
 if [ $# = 0 ]
     then
         cat ~/Lists/tasks.md
@@ -24,10 +29,13 @@ if [ "$1" == "$UPDATE" ]
 fi
 if [ "$1" == "$HELP" ]
     then
-        echo "Help chart for tasks script
-        * current  - Current Tasks
-        * next     - next tasks
-        * help     - Lists all options
-        * update   - Opens tasks.md in nano"
+        echo "┌┬┐┌─┐┌─┐┬┌─┌─┐"
+        echo " │ ├─┤└─┐├┴┐└─┐"
+        echo " ┴ ┴ ┴└─┘┴ ┴└─┘"
+        echo "Help chart for tasks script"
+        echo "* current  - Current Tasks"
+        echo "* next     - next tasks"
+        echo "* help     - Lists all options"
+        echo "* update   - Opens tasks.md in nano"
 fi
 echo "Happy Coding :-)"
