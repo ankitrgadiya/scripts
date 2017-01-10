@@ -15,12 +15,21 @@ if [ $# = 0 ]
         echo "For help use --help"
 elif [ $# != 0 ]
     then
-        if [[ "$1" == "$lock"  ||  "$1" == "$githelper"  ||  "$1" == "$tasks" ]]
+        if [[ "$1" == "$lock"  ||  "$1" == "$githelper" ]]
         then
-            mkdir $HOME/.scripts > /dev/null
+            mkdir $HOME/.scripts
             cp $1 $HOME/.scripts
             echo "export PATH=$PATH:$HOME/.scripts/" >> $HOME/.bashrc
             echo "Done!"
+        elif [ "$1" == "$tasks" ]
+        then
+            mkdir $HOME/Lists
+            touch $HOME/Lists/tasks.md
+            mkdir $HOME/.scripts
+            cp $1 $HOME/.scripts
+            echo "export PATH=$PATH:$HOME/.scripts/" >> $HOME/.bashrc
+            echo "Populate the tasks"
+            echo "Done"
         elif [ "$1" == "$help" ] 
         then
             echo "╦┌┐┌┌─┐┌┬┐┌─┐┬  ┬  "
