@@ -1,7 +1,7 @@
 # Bash Scripts
 By [Ankit R Gadiya](http://ankitrgadiya.me)
 
-### tasks
+### Tasks
 A simple bash script to list down GCI tasks from tasks.md file.
 [![asciicast](https://asciinema.org/a/96349.png)](https://asciinema.org/a/96349)
 
@@ -14,5 +14,8 @@ Dependencies:
 - i3lock
 - scrot
 
-### githelper
+### Githelper
 A small script to perform git commands on a whole bunch of repos together.
+
+### Install
+A script to install other scripts.
