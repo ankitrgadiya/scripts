@@ -1,0 +1,39 @@
+#! /bin/bash
+
+# Written by Ankit R Gadiya
+
+# Scripts suppported
+lock="lock"
+githelper="githelper"
+tasks="tasks"
+help="--help"
+
+# Installation script
+if [ $# = 0 ]
+    then
+        echo "Try again with command line arguments"
+        echo "For help use --help"
+elif [ $# != 0 ]
+    then
+        if [[ "$1" == "$lock"  ||  "$1" == "$githelper"  ||  "$1" == "$tasks" ]]
+        then
+            mkdir $HOME/.scripts > /dev/null
+            cp $1 $HOME/.scripts
+            echo "export PATH=$PATH:$HOME/.scripts/" >> $HOME/.bashrc
+            echo "Done!"
+        elif [ "$1" == "$help" ] 
+        then
+            echo "╦┌┐┌┌─┐┌┬┐┌─┐┬  ┬  "
+            echo "║│││└─┐ │ ├─┤│  │  "
+            echo "╩┘└┘└─┘ ┴ ┴ ┴┴─┘┴─┘"
+            echo "Usage: install <option>"
+            echo "Scripts which can be installed:"
+            echo "* lock"
+            echo "* githelper"
+            echo "* tasks"
+        else
+            echo "Try again with command line arguments"
+            echo "For help use --help"
+            echo "Failed"
+        fi
+fi
