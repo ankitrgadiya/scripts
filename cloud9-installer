@@ -74,6 +74,7 @@ echo "#! /bin/bash" >> $HOME/.scripts/cloud9-server
 echo "source ~/.nvm/nvm.sh" >> $HOME/.scripts/cloud9-server
 echo "cd ~/github/core/" >> $HOME/.scripts/cloud9-server
 echo "node server.js -p 3000 -a : -w '/home/<user>/'" >> $HOME/.scripts/cloud9-server
+chmod +x ~/.scripts/cloud9-server
 echo "Done!"
 
 echo "Now restart the shell and use cloud9-server to start the server"
