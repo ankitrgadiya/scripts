@@ -68,9 +68,7 @@ npm install
 echo "Done!"
 
 # setting up start script
-echo >>
 mkdir $HOME/.scripts
-cp $1 $HOME/.scripts
 echo "export PATH=$PATH:$HOME/.scripts/" >> $HOME/.bashrc
 echo "#! /bin/bash" >> $HOME/.scripts/cloud9-server
 echo "source ~/.nvm/nvm.sh" >> $HOME/.scripts/cloud9-server
