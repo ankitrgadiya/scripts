@@ -1,0 +1,81 @@
+#! /bin/bash
+
+# Originally by TekuConcept
+# Written by Ankit R Gadiya
+
+echo "                 ___ "
+echo "┌─┐┬  ┌─┐┬ ┬┌┬┐ / _ \\"
+echo "│  │  │ ││ │ ││ \_, /"
+echo "└─┘┴─┘└─┘└─┘─┴┘  /_/"
+
+
+# Installing packages
+echo "Preparing System"
+sudo apt-get update
+sudo apt-get install -y python-software-properties python make build-essential g++ curl libssl-dev apache2-utils git libxml2-dev
+
+
+# Upgrading system optional
+while true
+do
+  echo "Upgrade system [Optional]"
+  echo -n "'yes' or 'no': "
+  read REPLY
+  case $REPLY in
+    'yes')
+      upgrade=1
+      break;;
+    'no')
+      upgrade=0
+      break;;
+    *)
+      echo "Wrong input try again";;
+  esac
+done
+if [ "$upgrade" == 1 ]
+  then
+    sudo apt-get upgrade
+    echo "Success!"
+elif [ "$upgrade" == 0 ]
+  then
+    echo "Upgrade cancelled"
+fi
+
+echo "Making Directory"
+mkdir ~/github
+cd ~/github
+
+echo "Cloning C9 core"
+git clone https://github.com/c9/core
+echo "Done!"
+
+# install nvm to use node 0.10
+echo "Cloning NVM"
+git clone https://github.com/creationix/nvm.git ~/.nvm
+echo "Done!"
+
+echo "Installing Node 0.10"
+source ~/.nvm/nvm.sh
+nvm install 0.10
+echo "Done!"
+
+# setting up cloud9
+echo "Setting up Cloud9"
+cd core
+npm install packager
+npm install
+./scripts/install-sdk.sh
+echo "Done!"
+
+# setting up start script
+echo >>
+mkdir $HOME/.scripts
+cp $1 $HOME/.scripts
+echo "export PATH=$PATH:$HOME/.scripts/" >> $HOME/.bashrc
+echo "#! /bin/bash" >> $HOME/.scripts/cloud9-server
+echo "source ~/.nvm/nvm.sh" >> $HOME/.scripts/cloud9-server
+echo "cd ~/github/core/" >> $HOME/.scripts/cloud9-server
+echo "node server.js -p 3000 -a : -w '/home/<user>/'" >> $HOME/.scripts/cloud9-server
+echo "Done!"
+
+echo "Now restart the shell and use cloud9-server to start the server"
