@@ -33,7 +33,7 @@ fi
 
 # Installing predefined most used softwares
 echo "Installing utilites..."
-apt-get install i3 gnome-disk-utility gedit vim tmux moc vlc firefox-esr lxappearance xfce4-terminal gnome-themes-standard mc openssh-server lightdm git curl feh scrot imagemagik gstreamer1.0-fluendo p7zip
+apt-get install i3-wm i3lock i3status gedit vim tmux moc firefox-esr lxappearance xfce4-terminal gnome-themes-standard openssh-server git feh gstreamer0.10-fluendo p7zip unzip
 if [ $? -eq 0 ]; then
     echo OK
     echo "Done!"
