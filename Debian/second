@@ -2,7 +2,7 @@
 
 # Connecting to internet
 echo "Starting..."
-dhclient eth0
+sudo dhclient eth0
 if [ $? -eq 0 ]; then
     echo OK
 else
@@ -11,19 +11,19 @@ fi
 
 # Installing network manager and wifi capabilities
 echo "Installing network capabilities..."
-apt-get install network-manager wireless-tools firmware-atheros
+sudo apt-get install network-manager wireless-tools firmware-atheros
 if [ $? -eq 0 ]; then
     echo OK
 else
     echo FAIL
 fi
-sed -i -e 's/false/true/g' /etc/NetworkManager/NetworkManager.conf
+sudo sed -i -e 's/false/true/g' /etc/NetworkManager/NetworkManager.conf
 if [ $? -eq 0 ]; then
     echo OK
 else
     echo FAIL
 fi
-service network-manager restart
+sudo service network-manager restart
 if [ $? -eq 0 ]; then
     echo OK
     echo "Done!"
@@ -33,7 +33,7 @@ fi
 
 # Installing predefined most used softwares
 echo "Installing utilites..."
-apt-get install i3-wm i3lock i3status gedit vim tmux moc firefox-esr lxappearance xfce4-terminal gnome-themes-standard openssh-server git feh gstreamer0.10-fluendo p7zip unzip
+sudo apt-get install i3-wm i3lock i3status gedit vim tmux moc firefox-esr lxappearance xfce4-terminal gnome-themes-standard openssh-server git feh gstreamer0.10-fluendo p7zip unzip
 if [ $? -eq 0 ]; then
     echo OK
     echo "Done!"
@@ -43,10 +43,10 @@ fi
 
 # Setting up ssh server
 echo "Setting up SSH server..."
-update-rc.d -f ssh remove
-update-rc.d -f ssh defaults
-update-rc.d -f ssh enable 2 3 4 5
-service ssh restart
+sudo update-rc.d -f ssh remove
+sudo update-rc.d -f ssh defaults
+sudo update-rc.d -f ssh enable 2 3 4 5
+sudo service ssh restart
 if [ $? -eq 0 ]; then
     echo OK
 else
