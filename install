@@ -20,6 +20,9 @@ elif [ $# != 0 ]
             mkdir $HOME/.scripts
             cp $1 $HOME/.scripts
             echo "export PATH=$PATH:$HOME/.scripts/" >> $HOME/.bashrc
+            echo "Set directories"
+            sleep 2s
+            nano ~/.scripts/$1
             echo "Done!"
         elif [ "$1" == "$tasks" ]
         then
@@ -30,7 +33,7 @@ elif [ $# != 0 ]
             echo "export PATH=$PATH:$HOME/.scripts/" >> $HOME/.bashrc
             echo "Populate the tasks"
             echo "Done"
-        elif [ "$1" == "$help" ] 
+        elif [ "$1" == "$help" ]
         then
             echo "╦┌┐┌┌─┐┌┬┐┌─┐┬  ┬  "
             echo "║│││└─┐ │ ├─┤│  │  "
