@@ -13,6 +13,7 @@ declare -a repos=(cs50)
 clone="clone"
 pull="pull"
 fetch="fetch"
+setting="set"
 help="--help"
 
 # More variables
@@ -43,7 +44,7 @@ if [ $# = 1 ]
                     cd ..
                 done
         elif [ "$1" == "$fetch" ]
-            then    
+            then
                 for i in "${repos[@]}"
                 do
                     cd $i
@@ -61,6 +62,9 @@ if [ $# = 1 ]
                 echo "* clone"
                 echo "* pull"
                 echo "* fetch"
+        elif [ "$1" == "$setting" ]
+            then
+                nano ~/.scripts/githelper
         else
             echo "Not supported"
         fi
