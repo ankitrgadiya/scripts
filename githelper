@@ -7,7 +7,7 @@ dir="/path/to/repos/locally"
 url="https://github.com/username" # Replace username with your's
 
 # Array for repos
-declare -a repos=(cs50)
+declare -a repos=(repo1 repo2) # List all your repos here separated with space
 
 # First Command Line argument
 clone="clone"
