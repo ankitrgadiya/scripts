@@ -1,6 +1,6 @@
 #! /bin/bash
 
-DIR="/home/elliot/Codes/Diary"
+DIR="$HOME/Diary"
 YEAR=`date +"%Y"`
 MONTH=`date +"%B"`
 DATE=`date +"%Y-%m-%d-%H-%M-%S"`
