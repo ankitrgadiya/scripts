@@ -1,5 +1,5 @@
 # Bash Scripts
-By [Ankit R Gadiya](http://ankitrgadiya.me)
+By [Ankit R Gadiya](https://ankitrgadiya.in)
 
 ### Tasks
 A simple bash script to list down GCI tasks from tasks.md file.
