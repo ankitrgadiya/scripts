@@ -21,5 +21,12 @@ A small script to perform git commands on a whole bunch of repos together.
 A bash script to setup cloud9 ide locally (or server). Originally by [TekuConcept](https://github.com/TekuConcept) as
 described [here](https://gist.github.com/RIAEvangelist/6335743#gistcomment-1755623)
 
+### Diary
+A Script to manage diary from the ease of Terminal. This diary uses Git to handle entries and Jekyll to serve them.
+
+Dependencies:
+- Jekyll
+- Git
+
 ### Install
 A script to install other scripts.
