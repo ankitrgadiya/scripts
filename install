@@ -2,68 +2,137 @@
 
 # Written by Ankit R Gadiya
 
-
+# Variables
 YEAR=`date +"%Y"`
 
-# Installation script
-if [ $# = 0 ]
+# Lock
+function lock {
+  echo "Set directories"
+  sleep 1
+  nano ~/.scripts/lock
+}
+
+# Githelper
+function githelper {
+  echo "Set directory, username and repos"
+  sleep 1
+  nano ~/.scripts/githelper
+}
+
+# Task
+function task {
+  mkdir $HOME/Lists
+  touch $HOME/Lists/tasks.md
+  echo "Populate the tasks"
+  sleep 1
+}
+
+# Diary
+function diary {
+  cd $HOME
+  wget https://github.com/ankitrgadiya/simple-jekyll/archive/master.zip
+  unzip master.zip -d Diary
+  cd Diary
+  sed -i -e 's/blog/diary/g' _config.yml
+  sed -i -e 's/Blog/diary/g' _config.yml
+  git init
+  git checkout -b $YEAR
+  git add .
+  git commit -m "Diary Initiated"
+}
+
+
+function finish {
+  echo "Done!"
+  echo "Restart shell"
+}
+
+# Copy script into .scripts and add it to path
+function script {
+  mkdir $HOME/.scripts
+  cp $opt $HOME/.scripts
+  echo "export PATH=$PATH:$HOME/.scripts/" >> $HOME/.bashrc
+}
+
+# Error message
+function error {
+  echo "Try again with command line arguments"
+  echo "For help use --help"
+  echo "Failed"
+}
+
+# Interactive Menu interface
+if [ $# == 0 ]
     then
-        echo "Try again with command line arguments"
-        echo "For help use --help"
+        OPTIONS="lock githelper task diary"
+        select opt in $OPTIONS; do
+          if [ "$opt" = "lock" ]
+              then
+                  script
+                  lock
+                  finish
+                  exit
+          elif [ "$opt" = "githelper" ]
+              then
+                  script
+                  githelper
+                  finish
+                  exit
+          elif [ "$opt" = "task" ]
+              then
+                  task
+                  script
+                  finish
+                  exit
+          elif [ "$opt" = "diary" ]
+              then
+                  diary
+                  script
+                  finish
+                  exit
+          else
+                  echo "Error"
+          fi
+        done
 elif [ $# != 0 ]
     then
-        if [[ "$1" == "lock"  ||  "$1" == "githelper" ]]
-        then
-            mkdir $HOME/.scripts
-            cp $1 $HOME/.scripts
-            echo "export PATH=$PATH:$HOME/.scripts/" >> $HOME/.bashrc
-            echo "Set directories"
-            sleep 2s
-            nano ~/.scripts/$1
-            echo "Done!"
-            echo "Restart shell!"
+        if [[ "$1" == "lock"  ]
+            then
+                script
+                lock
+                finish
+        elif [ "$1" == "githelper"]
+            then
+                script
+                githelper
+                finish
         elif [ "$1" == "tasks" ]
-        then
-            mkdir $HOME/Lists
-            touch $HOME/Lists/tasks.md
-            mkdir $HOME/.scripts
-            cp $1 $HOME/.scripts
-            echo "export PATH=$PATH:$HOME/.scripts/" >> $HOME/.bashrc
-            echo "Populate the tasks"
-            echo "Done"
-            echo "Restart shell!"
+            then
+                task
+                script
+                finish
         elif [ "$1" == "diary" ]
-        then
-            cd $HOME
-            wget https://github.com/ankitrgadiya/simple-jekyll/archive/master.zip
-            unzip master.zip -d Diary
-            cd Diary
-            sed -i -e 's/blog/diary/g' _config.yml
-            sed -i -e 's/Blog/diary/g' _config.yml
-            git init
-            git checkout -b $YEAR
-            git add .
-            git commit -m "Diary Initiated"
-            mkdir $HOME/.scripts
-            cp $1 $HOME/.scripts
-            echo "export PATH=$PATH:$HOME/.scripts/" >> $HOME/.bashrc
-            echo "Done"
-            echo "Restart shell!"
-
+            then
+                diary
+                script
+                finish
         elif [ "$1" == "--help" ]
-        then
-            echo "╦┌┐┌┌─┐┌┬┐┌─┐┬  ┬  "
-            echo "║│││└─┐ │ ├─┤│  │  "
-            echo "╩┘└┘└─┘ ┴ ┴ ┴┴─┘┴─┘"
-            echo "Usage: install <option>"
-            echo "Scripts which can be installed:"
-            echo "* lock"
-            echo "* githelper"
-            echo "* tasks"
-            echo "* diary"
+          then
+              echo "╦┌┐┌┌─┐┌┬┐┌─┐┬  ┬  "
+              echo "║│││└─┐ │ ├─┤│  │  "
+              echo "╩┘└┘└─┘ ┴ ┴ ┴┴─┘┴─┘"
+              echo "Usage: install"
+              echo "For Interactive menu"
+              echo "install also accept command line argument"
+              echo "install <script>"
+              echo "Scripts supported"
+              echo "* lock"
+              echo "* githelper"
+              echo "* tasks"
+              echo "* diary"
         else
-            echo "Try again with command line arguments"
-            echo "For help use --help"
-            echo "Failed"
+              error
         fi
+else
+        error
 fi
