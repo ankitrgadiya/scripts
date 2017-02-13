@@ -2,12 +2,7 @@
 
 # Written by Ankit R Gadiya
 
-# Scripts suppported
-lock="lock"
-githelper="githelper"
-tasks="tasks"
-diary="diary"
-help="--help"
+
 YEAR=`date +"%Y"`
 
 # Installation script
@@ -17,7 +12,7 @@ if [ $# = 0 ]
         echo "For help use --help"
 elif [ $# != 0 ]
     then
-        if [[ "$1" == "$lock"  ||  "$1" == "$githelper" ]]
+        if [[ "$1" == "lock"  ||  "$1" == "githelper" ]]
         then
             mkdir $HOME/.scripts
             cp $1 $HOME/.scripts
@@ -27,7 +22,7 @@ elif [ $# != 0 ]
             nano ~/.scripts/$1
             echo "Done!"
             echo "Restart shell!"
-        elif [ "$1" == "$tasks" ]
+        elif [ "$1" == "tasks" ]
         then
             mkdir $HOME/Lists
             touch $HOME/Lists/tasks.md
@@ -37,7 +32,7 @@ elif [ $# != 0 ]
             echo "Populate the tasks"
             echo "Done"
             echo "Restart shell!"
-        elif [ "$1" == "$diary" ]
+        elif [ "$1" == "diary" ]
         then
             cd $HOME
             wget https://github.com/ankitrgadiya/simple-jekyll/archive/master.zip
@@ -55,7 +50,7 @@ elif [ $# != 0 ]
             echo "Done"
             echo "Restart shell!"
 
-        elif [ "$1" == "$help" ]
+        elif [ "$1" == "--help" ]
         then
             echo "╦┌┐┌┌─┐┌┬┐┌─┐┬  ┬  "
             echo "║│││└─┐ │ ├─┤│  │  "
