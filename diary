@@ -1,0 +1,95 @@
+#! /bin/bash
+
+DIR="/home/elliot/Codes/Diary"
+YEAR=`date +"%Y"`
+MONTH=`date +"%B"`
+DATE=`date +"%Y-%m-%d-%H-%M-%S"`
+EDITOR="vim"
+
+echo "╔╦╗┬┌─┐┬─┐┬ ┬"
+echo " ║║│├─┤├┬┘└┬┘"
+echo "═╩╝┴┴ ┴┴└─ ┴ "
+if [ $# = 0 ]
+    then
+        echo "Try again with command line arguments"
+        echo "For help use --help"
+fi
+if [ $# = 1 ]
+    then
+        if [ "$1" == "entry" ]
+            then
+                cd $DIR
+
+                # Checking out branch for current year
+                if [[ `git branch | grep 2017` ]]
+                    then
+                        git checkout $YEAR &> /dev/null
+                else
+                        git checkout -b $YEAR
+                        rm -rf _posts
+                fi
+
+                cd _posts/
+
+                # cd into current month folder
+                if [ `ls | grep $MONTH` ]
+                    then
+                        cd $MONTH
+                else
+                        mkdir $MONTH
+                        cd $MONTH
+                fi
+
+
+
+                sleep 1
+                # New entry
+
+                echo "---" > $DATE.md
+                echo "layout: post" >> $DATE.md
+                echo "title: " >> $DATE.md
+                echo "---" >> $DATE.md
+                $EDITOR $DATE.md
+
+                # options after entry
+                OPTIONS="Save Edit Delete"
+                select opt in $OPTIONS; do
+                  if [ "$opt" = "Save" ]
+                      then
+                          cd $DIR
+                          git add _posts/$MONTH/$DATE.md
+                          git commit -m "Added: post"
+
+                          echo "Done!"
+                          exit
+                  elif [ "$opt" = "Edit" ]
+                      then
+                          vim $DATE.md
+                  elif [ "$opt" = "Delete" ]
+                      then
+                          rm $DATE.md
+                          exit
+                  else
+                          echo "Error"
+                  fi
+                done
+
+        elif [ "$1" == "serve" ]
+            then
+                cd $DIR
+                jekyll serve
+        elif [ "$1" == "--help" ]
+            then
+                echo "╦ ╦┌─┐┬  ┌─┐"
+                echo "╠═╣├┤ │  ├─┘"
+                echo "╩ ╩└─┘┴─┘┴  "
+                echo "Command Line Journal using Git and Jekyll"
+                echo "Usage: diary <options>"
+                echo "Options: "
+                echo "* entry : New entry"
+                echo "* serve : See all your posts in browser"
+                echo "* help  : Print this help"
+        else
+            echo "Not supported"
+        fi
+fi
