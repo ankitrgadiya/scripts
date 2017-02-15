@@ -28,5 +28,7 @@ Dependencies:
 - Jekyll
 - Git
 
+[![asciicast](https://asciinema.org/a/103270.png)](https://asciinema.org/a/103270)
+
 ### Install
 A script to install other scripts.
