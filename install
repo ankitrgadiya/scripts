@@ -96,7 +96,7 @@ if [ $# == 0 ]
         done
 elif [ $# != 0 ]
     then
-        if [[ "$1" == "lock"  ]
+        if [ "$1" == "lock"  ]
             then
                 script
                 lock
