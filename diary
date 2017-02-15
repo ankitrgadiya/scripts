@@ -21,7 +21,7 @@ if [ $# = 1 ]
                 cd $DIR
 
                 # Checking out branch for current year
-                if [[ `git branch | grep 2017` ]]
+                if [[ `git branch | grep $YEAR` ]]
                     then
                         git checkout $YEAR &> /dev/null
                 else
