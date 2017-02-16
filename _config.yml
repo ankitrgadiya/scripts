@@ -1,1 +1,4 @@
 theme: jekyll-theme-cayman
+title: Scripts
+description: Bash scripts to make daily tasks easier.
+show_downloads: true
