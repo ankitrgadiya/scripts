@@ -33,7 +33,7 @@ fi
 
 # Installing predefined most used softwares
 echo "Installing utilites..."
-sudo apt-get install i3-wm i3lock i3status gedit vim tmux moc firefox-esr lxappearance xfce4-terminal gnome-themes-standard openssh-server git feh gstreamer0.10-fluendo p7zip unzip
+sudo apt-get install vim tmux openssh-server git p7zip unzip
 if [ $? -eq 0 ]; then
     echo OK
     echo "Done!"
@@ -57,53 +57,16 @@ echo "Done!"
 # Setting up my dotfiles
 echo "Setting up dotfiles..."
 git clone https://github.com/ankitrgadiya/dotfiles
-cp -r dotfiles/.i3 ~/.
+cp dotfiles/.gitconfig ~/.
+cp dotfiles/.tmux.conf ~/.
+cp dotflies/.vimrc ~/.
 cp -r dotfiles/.mutt ~/.
-cp dotfiles/.muttrc ~/
-vim ~/.mutt/account.com.gmail.ankit4922
-vim ~/.mutt/account.com.pawnmail.me
+cp dotfiles/.muttrc ~/.
+echo "Change passwords"
+sleep 3s
+vim .mutt/account.com.egurjan.arg
+vim .mutt/account.com.ankitrga.me
+vim .mutt/account.com.ankitrgadiyain.me
+vim .mutt/account.com.gmail.ankit4922
 rm -rf dotfiles
 echo "Done!"
-
-# Git configuration
-echo "Git config"
-echo -n "Git username: "
-read GITNAME
-git config --global user.name "$GITNAME"
-echo -n "Git email: "
-read GITMAIL
-git config --global user.email "$GITMAIL"
-
-while true
-do
-  echo "Do you wanna setup Github aliases"
-  echo -n "'yes' or 'no': "
-  read REPLY
-  case $REPLY in
-    'yes')
-      alias=1
-      break;;
-    'no')
-      alias=0
-      break;;
-    *)
-      echo "Wrong input try again";;
-  esac
-done
-if [ "$alias" == 1 ]
-  then
-    echo -n "Github username: "
-    read USERNAME
-    echo -n "Alias: "
-    read ALIAS
-    git config --global url.https://github.com/$USERNAME/.insteadof $ALIAS:
-    git config --global url.https://github.com/.insteadof gh:
-    echo "Github = gh:"
-    echo "Github username = $ALIAS:"
-    echo "Done!"
-else
-  echo "Alias setup cancelled"
-fi
-
-
-echo "Reboot now!"
