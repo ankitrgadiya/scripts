@@ -1,0 +1,63 @@
+#! /bin/bash
+
+# Written by Ankit R. Gadiya
+
+# Github Markdown css cdn: https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.6.0/github-markdown.min.css
+
+input=$1
+output=${1%.*}.html
+title=${1%.*}
+
+
+function style {
+    echo '<style>'                     >> $output
+    echo '.markdown-body {'            >> $output
+    echo '	box-sizing: border-box;'   >> $output
+    echo '	min-width: 200px;'         >> $output
+    echo '	max-width: 980px;'         >> $output
+    echo '	margin: 0 auto;'           >> $output
+    echo '	padding: 45px;'            >> $output
+    echo '}'                           >> $output
+    echo '</style>'                    >> $output
+}
+
+function head {
+    echo '<head>'                                                               >> $output
+    echo '<meta charset="utf-8">'                                               >> $output
+    echo '<meta http-equiv="x-ua-compatible" content="ie=edge">'                >> $output
+    echo '<meta name="viewport" content="width=device-width, initial-scale=1">' >> $output
+    echo "<title>$title</title>"                                               >> $output
+    echo '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.6.0/github-markdown.min.css">' >> $output
+    style
+    echo '</head>'                                                              >> $output
+}
+
+function md {
+
+    echo '<div class="markdown-body">'  >> $output
+    markdown $input                     >> $output
+    echo '</div>'                       >> $output
+}
+
+function html {
+    echo '<!DOCTYPE html>'  > $output
+    echo '<html>'          >> $output
+    head
+    echo '<body>'          >> $output
+    md
+    echo '</body>'         >> $output
+    echo '</html>'         >> $output
+
+}
+
+if [ $# = 0 ]
+    then
+        echo "╦ ╦┌─┐┬  ┌─┐"
+        echo "╠═╣├┤ │  ├─┘"
+        echo "╩ ╩└─┘┴─┘┴  "
+        echo "A simple script to generate github flavoured pages from markdown"
+        echo "Usage: gm file.md"
+elif [ $# = 1 ]
+    then
+        html
+fi
