@@ -30,5 +30,11 @@ Dependencies:
 
 [![asciicast](https://asciinema.org/a/103270.png)](https://asciinema.org/a/103270)
 
+### GM
+A simple script to generate HTML files from Github flavoured markdown files using Github CSS.
+
+Dependencies:
+- Markdown
+
 ### Install
 A script to install other scripts.
