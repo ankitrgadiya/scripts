@@ -104,6 +104,12 @@ if [ $# == 0 ]
                   diary &> /dev/null
                   finish
                   exit
+          elif [ "$opt" = "gm" ]
+              then
+                  echo "Installing $opt"
+                  script &> /dev/null
+                  finish
+                  exit
           else
                   echo "Error"
           fi
@@ -133,6 +139,11 @@ elif [ $# != 0 ]
                 echo "Installing $1"
                 script $1 &> /dev/null
                 diary &> /dev/null
+                finish
+        elif [ "$1" == "gm"]
+            then
+                echo "Installing $1"
+                script $1 &> /dev/null
                 finish
         elif [ "$1" == "--help" ]
           then
