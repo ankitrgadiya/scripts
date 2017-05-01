@@ -1,0 +1,97 @@
+body {
+  font-family: 'Inconsolata', monospace;
+  min-height: 100%;
+}
+
+.jumbotron {
+  background: #ffffff;
+  background-size: cover;
+  margin: 0;
+  text-align: center;
+}
+.jumbotron h1{
+  font-size: 2.5em;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10vh;
+  margin-bottom: 30px;
+}
+
+.logo {
+  height: 25px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 10px;
+}
+
+.navbar {
+  background: white;
+  border: 0;
+}
+.navbar .navbar-nav {
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+}
+.navbar .navbar-collapse {
+  text-align: center;
+}
+.navbar ul li {
+  font-size: 1.5em;
+}
+.nav.navbar-nav li a {
+  color: #000000;
+	font-weight: bold;
+}
+.nav.navbar-nav li a:hover {
+  background: none;
+}
+a.active {
+	border-bottom: 3px solid #000000;
+}
+
+.about {
+  margin-top: 10vh;
+}
+h2 {
+  text-align: left;
+  margin-bottom: 20px;
+  font-size: 2.1em;
+  font-weight: bold;
+}
+a {
+  color: black;
+}
+a:hover {
+  color: black;
+  text-decoration: none;
+}
+p {
+  font-size: 1.5em;
+  margin-bottom: 40px;
+}
+ul li {
+  font-size: 1.5em;
+}
+
+
+
+footer {
+  margin-top: 30vh;
+  text-align: center;
+  font-size: 1.5em;
+}
+footer p {
+  font-size: 0.9em;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+.error {
+  margin-top: 30vh;
+  text-align: center;
+}
+.error p {
+  font-size: 1.5em;
+}
