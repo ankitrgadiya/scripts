@@ -36,5 +36,12 @@ A simple script to generate HTML files from Github flavoured markdown files usin
 Dependencies:
 - Markdown
 
+### Tweet-commit
+A script which can be used as post-commit to tweet git-commits directly after
+commiting changes.
+
+Dependencies:
+- t
+
 ### Install
 A script to install other scripts.
