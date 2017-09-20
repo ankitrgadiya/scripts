@@ -12,7 +12,16 @@ echo "└─┘┴─┘└─┘└─┘─┴┘  /_/"
 # Installing packages
 echo "Preparing System"
 sudo apt-get update
-sudo apt-get install -y python-software-properties python make build-essential g++ curl libssl-dev apache2-utils git libxml2-dev
+sudo apt-get install -y \
+	python \
+	make \
+	build-essential \
+	g++ curl \
+	libssl-dev \
+	apache2-utils \
+	git \
+	libxml2-dev \
+	tmux
 
 
 # Upgrading system optional
@@ -70,10 +79,12 @@ echo "Done!"
 # setting up start script
 mkdir $HOME/.scripts
 echo "export PATH=$PATH:$HOME/.scripts/" >> $HOME/.bashrc
-echo "#! /bin/bash" >> $HOME/.scripts/cloud9-server
-echo "source ~/.nvm/nvm.sh" >> $HOME/.scripts/cloud9-server
-echo "cd ~/github/core/" >> $HOME/.scripts/cloud9-server
-echo "node server.js -p 3000 -a : -w '/home/<user>/'" >> $HOME/.scripts/cloud9-server
+cat > $HOME/.scripts/cloud9-server << EOF
+#! /bin/bash
+source ~/.nvm/nvm.sh
+cd ~/github/core/
+node server.js -p 3000 -a : -w '/home/<user>/'
+EOF
 chmod +x ~/.scripts/cloud9-server
 echo "Done!"
 
