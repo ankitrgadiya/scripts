@@ -8,46 +8,34 @@ input=$1
 output=${1%.*}.html
 title=${1%.*}
 
-
-function style {
-    echo '<style>'                     >> $output
-    echo '.markdown-body {'            >> $output
-    echo '	box-sizing: border-box;'   >> $output
-    echo '	min-width: 200px;'         >> $output
-    echo '	max-width: 980px;'         >> $output
-    echo '	margin: 0 auto;'           >> $output
-    echo '	padding: 45px;'            >> $output
-    echo '}'                           >> $output
-    echo '</style>'                    >> $output
-}
-
-function head {
-    echo '<head>'                                                               >> $output
-    echo '<meta charset="utf-8">'                                               >> $output
-    echo '<meta http-equiv="x-ua-compatible" content="ie=edge">'                >> $output
-    echo '<meta name="viewport" content="width=device-width, initial-scale=1">' >> $output
-    echo "<title>$title</title>"                                               >> $output
-    echo '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.6.0/github-markdown.min.css">' >> $output
-    style
-    echo '</head>'                                                              >> $output
-}
-
-function md {
-
-    echo '<div class="markdown-body">'  >> $output
-    markdown $input                     >> $output
-    echo '</div>'                       >> $output
-}
-
-function html {
-    echo '<!DOCTYPE html>'  > $output
-    echo '<html>'          >> $output
-    head
-    echo '<body>'          >> $output
-    md
-    echo '</body>'         >> $output
-    echo '</html>'         >> $output
-
+html ()
+{
+    echo '
+	<!DOCTYPE html>
+	<html>
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>$title</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.6.0/github-markdown.min.css">
+	<style>
+	.markdown-body {
+		box-sizing: border-box;
+		min-width: 200px;
+		max-width: 980px;
+		margin: 0 auto;
+		padding: 45px;
+	}
+	</style>
+	</head>
+	<body>
+	<div class="markdown-body">'  >> $output
+    markdown $input >> $output
+    echo '
+	</div>
+	</body>
+	</html>' >> $output
 }
 
 if [ $# = 0 ]
